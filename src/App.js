@@ -7,6 +7,7 @@ import ContactUs from "./Pages/ContactUs/ContactUs";
 import Login from "./Pages/Form/Login/Login";
 import Home from "./Pages/Home/Home";
 import Reviews from "./Pages/Reviews/Reviews";
+import Footer from "./Pages/Shared/Footer/Footer";
 import Header from "./Pages/Shared/Header/Header";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
