@@ -5,13 +5,13 @@ const ServiceBanner = () => {
   return (
     <div class="hero mt-24 lg:px-12">
       <div class="hero-content flex-col lg:flex-row ">
-        <div className="lg:pr-52">
+        <div className="lg:mx-28">
           <img
             src={tretment}
             class="max-w-sm rounded-lg shadow-2xl w-full lg:w-96"
           />
         </div>
-        <div>
+        <div className="grow">
           <h1 class="text-3xl lg:text-5xl font-bold">
             Exceptional Dental Care, on Your Terms
           </h1>
