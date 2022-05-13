@@ -12,15 +12,19 @@ const AppointmentBanner = ({ selected, setSelected }) => {
     }`;
   return (
     <div
-      class="hero min-h-screen"
+      className="hero min-h-screen"
       style={{
         background: `url(${bg})`,
         backgroundSize: "cover",
         backgroundPosition: "center center",
       }}
     >
-      <div class="hero-content flex-col lg:flex-row-reverse">
-        <img src={chair} class="max-w-sm rounded-lg shadow-2xl w-full" alt="" />
+      <div className="hero-content flex-col lg:flex-row-reverse">
+        <img
+          src={chair}
+          className="max-w-sm rounded-lg shadow-2xl w-full"
+          alt=""
+        />
         <div className="lg:px-24">
           <style>{css}</style>
           <DayPicker

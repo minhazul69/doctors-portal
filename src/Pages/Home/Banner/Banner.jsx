@@ -10,7 +10,8 @@ const Banner = () => {
           <div className="lg:mx-28">
             <img
               src={Chair}
-              className="max-w-sm w-full lg:w-96 rounded-lg shadow-2xl "
+              className="max-w-sm w-full lg:w-96 rounded-lg shadow-2xl"
+              alt=""
             />
           </div>
           <div>

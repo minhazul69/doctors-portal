@@ -14,16 +14,16 @@ const BookingModal = ({ treatment, selected, setTreatment }) => {
   };
   return (
     <div>
-      <input type="checkbox" id="booking-modal" class="modal-toggle" />
-      <div class="modal modal-bottom sm:modal-middle">
-        <div class="modal-box">
+      <input type="checkbox" id="booking-modal" className="modal-toggle" />
+      <div className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box">
           <label
             for="booking-modal"
-            class="btn btn-sm btn-circle absolute right-2 top-2"
+            className="btn btn-sm btn-circle absolute right-2 top-2"
           >
             ✕
           </label>
-          <h3 class="font-bold text-2xl text-secondary">{name}</h3>
+          <h3 className="font-bold text-2xl text-secondary">{name}</h3>
           <form
             onSubmit={handleBooking}
             className="grid grid-cols-1 gap-4 justify-items-center mt-10"
@@ -32,9 +32,12 @@ const BookingModal = ({ treatment, selected, setTreatment }) => {
               disabled
               value={format(selected, "PP")}
               placeholder="Type here"
-              class="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full max-w-xs"
             />
-            <select name="slot" class="select select-accent w-full max-w-xs">
+            <select
+              name="slot"
+              className="select select-accent w-full max-w-xs"
+            >
               {slots.map((slot) => (
                 <option value={slot}>{slot}</option>
               ))}
@@ -43,24 +46,24 @@ const BookingModal = ({ treatment, selected, setTreatment }) => {
               type="text"
               name="fullName"
               placeholder="Full Name"
-              class="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full max-w-xs"
             />
             <input
               type="tel"
               name="phoneNumber"
               placeholder="Phone Number"
-              class="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full max-w-xs"
             />
             <input
               type="email"
               placeholder="Email"
               name="email"
-              class="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full max-w-xs"
             />
             <input
               type="submit"
               value="Submit"
-              class="btn btn-secondary w-full max-w-xs text-white font-bold bg-gradient-to-r from-secondary to-primary"
+              className="btn btn-secondary w-full max-w-xs text-white font-bold bg-gradient-to-r from-secondary to-primary"
             />
           </form>
         </div>
