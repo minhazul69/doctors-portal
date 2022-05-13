@@ -15,8 +15,8 @@ const Appointment = () => {
         </div>
         <div className="flex-1 text-white p-10 lg:p-0">
           <h5 className="font-bold text-primary text-xl mb-4">Appointment</h5>
-          <h3 class="text-3xl font-bold">Make an appointment Today</h3>
-          <p class="py-6">
+          <h3 className="text-3xl font-bold">Make an appointment Today</h3>
+          <p className="py-6">
             It is a long established fact that a reader will be distracted by
             the readable content of a page when looking at its layout. The point
             of using Lorem Ipsumis that it has a more-or-less normal
@@ -24,7 +24,7 @@ const Appointment = () => {
             here', making it look like readable English. Many desktop publishing
             packages and web page
           </p>
-          <button class="btn btn-primary bg-gradient-to-r from-secondary to-primary text-white font-bold">
+          <button className="btn btn-primary bg-gradient-to-r from-secondary to-primary text-white font-bold">
             Get Started
           </button>
         </div>

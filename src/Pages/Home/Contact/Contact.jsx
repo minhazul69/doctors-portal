@@ -18,24 +18,27 @@ const Contact = () => {
           <input
             type="email"
             placeholder="Email Address"
-            class="input input-bordered input-accent w-full max-w-xs mb-6"
+            required
+            className="input input-bordered input-accent w-full max-w-xs mb-6 "
           />
           <input
             type="text"
             placeholder="Subject"
-            class="input input-bordered input-accent w-full max-w-xs mb-6"
+            required
+            className="input input-bordered input-accent w-full max-w-xs mb-6"
           />
           <br />
           <textarea
-            className="border rounded border-accent mb-6 p-3"
+            className="border rounded border-accent mb-6 p-3 "
             name=""
+            required
             placeholder="Your Message"
             cols="38"
             rows="6"
           ></textarea>
           <br />
           <button
-            class="btn btn-primary bg-gradient-to-r from-secondary to-primary text-white"
+            className="btn btn-primary bg-gradient-to-r from-secondary to-primary text-white"
             type="submit"
           >
             Submit
