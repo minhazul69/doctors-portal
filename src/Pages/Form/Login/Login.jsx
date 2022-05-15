@@ -1,7 +1,7 @@
 import React from "react";
 import GoogleLogin from "../GoogleLogin";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import toast from "react-hot-toast";
@@ -9,21 +9,31 @@ import toast from "react-hot-toast";
 const Login = () => {
   const [signInWithEmailAndPassword, user, signinLoading, signInError] =
     useSignInWithEmailAndPassword(auth);
+  let navigate = useNavigate();
+  let location = useLocation();
+  let from = location.state?.from?.pathname || "/";
   const {
     register,
     handleSubmit,
+    resetField,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-    signInWithEmailAndPassword(data.email, data.password);
-    console.log(data);
-  };
+  if (user) {
+    setTimeout(() => {
+      toast.success("User Login SuccessFull");
+    }, 1000);
+    navigate(from, { replace: true });
+  }
   if (signInError) {
     const error = signInError?.message.split(":")[1];
     toast.error(error);
-  } else if (user) {
-    toast.success("User Login SuccessFull");
   }
+  const onSubmit = (data) => {
+    signInWithEmailAndPassword(data.email, data.password);
+    resetField("email");
+    resetField("password");
+  };
+
   return (
     <div className="flex items-center justify-center w-screen my-10">
       <div class="card w-96 bg-base-100 shadow-xl">
@@ -94,6 +104,9 @@ const Login = () => {
                 )}
               </label>
             </div>
+            <button class="btn btn-active btn-link btn-sm">
+              Forgot Password ?
+            </button>
             <input className="btn w-full" type="submit" value="Login" />
           </form>
           <p className="text-center my-2">

@@ -8,6 +8,8 @@ import {
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import auth from "../../../../firebase.init";
+import { useNavigation } from "react-day-picker";
+import Spinner from "../../../Shared/Spinner/Spinner";
 
 const SignUp = () => {
   const [
@@ -16,6 +18,7 @@ const SignUp = () => {
     userCreatLoading,
     userCreateError,
   ] = useCreateUserWithEmailAndPassword(auth);
+  const navigate = useNavigation();
   const [updateProfile] = useUpdateProfile(auth);
   const {
     register,
@@ -24,6 +27,9 @@ const SignUp = () => {
 
     formState: { errors },
   } = useForm();
+  if (userCreatLoading) {
+    return <Spinner />;
+  }
   const onSubmit = async (data) => {
     if (data.password !== data.ConfirmPassword) {
       return toast.error("Opps Password Not Match");
@@ -36,7 +42,10 @@ const SignUp = () => {
     resetField("ConfirmPassword");
   };
   if (user) {
-    toast.success("Create Account SuccessFully");
+    setTimeout(() => {
+      toast.success("Create Account SuccessFully");
+    }, 1000);
+    navigate("/");
   }
   if (userCreateError) {
     const error = userCreateError?.message.split(":")[1];

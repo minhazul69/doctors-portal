@@ -4,10 +4,20 @@ import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import Spinner from "../Shared/Spinner/Spinner";
 import toast from "react-hot-toast";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const GoogleLogin = () => {
   const [signInWithGoogle, user, googleLoading, googleError] =
     useSignInWithGoogle(auth);
+  let navigate = useNavigate();
+  let location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+  if (user) {
+    setTimeout(() => {
+      toast.success("User Login SuccessFull");
+    }, 1000);
+    navigate(from, { replace: true });
+  }
   if (googleLoading) {
     return <Spinner />;
   }
