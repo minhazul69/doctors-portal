@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import GoogleLogin from "../../GoogleLogin";
 import toast from "react-hot-toast";
 import {
@@ -8,7 +8,7 @@ import {
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import auth from "../../../../firebase.init";
-import { useNavigation } from "react-day-picker";
+
 import Spinner from "../../../Shared/Spinner/Spinner";
 
 const SignUp = () => {
@@ -17,8 +17,8 @@ const SignUp = () => {
     user,
     userCreatLoading,
     userCreateError,
-  ] = useCreateUserWithEmailAndPassword(auth);
-  const navigate = useNavigation();
+  ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+  const navigate = useNavigate();
   const [updateProfile] = useUpdateProfile(auth);
   const {
     register,
@@ -27,6 +27,14 @@ const SignUp = () => {
 
     formState: { errors },
   } = useForm();
+  useEffect(() => {
+    if (user) {
+      setTimeout(() => {
+        toast.success("Create Account SuccessFully");
+      }, 1000);
+      navigate("/");
+    }
+  }, [user, navigate]);
   if (userCreatLoading) {
     return <Spinner />;
   }
@@ -41,12 +49,7 @@ const SignUp = () => {
     resetField("password");
     resetField("ConfirmPassword");
   };
-  if (user) {
-    setTimeout(() => {
-      toast.success("Create Account SuccessFully");
-    }, 1000);
-    navigate("/");
-  }
+
   if (userCreateError) {
     const error = userCreateError?.message.split(":")[1];
     toast.error(error);
@@ -54,18 +57,18 @@ const SignUp = () => {
   console.log(user);
   return (
     <div className="flex items-center justify-center w-screen my-10">
-      <div class="card w-96 bg-base-100 shadow-xl">
-        <div class="card-body">
-          <h2 class="text-center font-bold text-xl">Login</h2>
+      <div className="card w-96 bg-base-100 shadow-xl">
+        <div className="card-body">
+          <h2 className="text-center font-bold text-xl">Sign Up</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div class="form-control w-full max-w-xs ">
-              <label class="label">
-                <span class="label-name">Name</span>
+            <div className="form-control w-full max-w-xs ">
+              <label className="label">
+                <span className="label-name">Name</span>
               </label>
               <input
                 type="text"
                 placeholder="Name"
-                class="input input-bordered w-full max-w-xs"
+                className="input input-bordered w-full max-w-xs"
                 {...register("name", {
                   required: {
                     value: true,
@@ -81,14 +84,14 @@ const SignUp = () => {
                 )}
               </label>
             </div>
-            <div class="form-control w-full max-w-xs ">
-              <label class="label">
-                <span class="label-email">Email</span>
+            <div className="form-control w-full max-w-xs ">
+              <label className="label">
+                <span className="label-email">Email</span>
               </label>
               <input
                 type="email"
                 placeholder="Email"
-                class="input input-bordered w-full max-w-xs"
+                className="input input-bordered w-full max-w-xs"
                 {...register("email", {
                   required: {
                     value: true,
@@ -113,14 +116,14 @@ const SignUp = () => {
                 )}
               </label>
             </div>
-            <div class="form-control w-full max-w-xs ">
-              <label class="label">
-                <span class="label-password">Password</span>
+            <div className="form-control w-full max-w-xs ">
+              <label className="label">
+                <span className="label-password">Password</span>
               </label>
               <input
                 type="password"
                 placeholder="Password"
-                class="input input-bordered w-full max-w-xs"
+                className="input input-bordered w-full max-w-xs"
                 {...register("password", {
                   required: {
                     value: true,
@@ -145,14 +148,14 @@ const SignUp = () => {
                 )}
               </label>
             </div>
-            <div class="form-control w-full max-w-xs ">
-              <label class="label">
-                <span class="label-password">Confirm Password</span>
+            <div className="form-control w-full max-w-xs ">
+              <label className="label">
+                <span className="label-password">Confirm Password</span>
               </label>
               <input
                 type="password"
                 placeholder="Confirm Password"
-                class="input input-bordered w-full max-w-xs"
+                className="input input-bordered w-full max-w-xs"
                 {...register("ConfirmPassword", {
                   required: {
                     value: true,
@@ -176,7 +179,7 @@ const SignUp = () => {
               Login
             </Link>
           </p>
-          <div class="divider">OR</div>
+          <div className="divider">OR</div>
           <GoogleLogin />
         </div>
       </div>

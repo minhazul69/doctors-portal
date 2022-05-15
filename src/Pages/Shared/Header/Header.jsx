@@ -26,7 +26,7 @@ const Header = () => {
       </li>
       {user ? (
         <li>
-          <button onClick={() => signOut(auth)} class="btn btn-ghost">
+          <button onClick={() => signOut(auth)} className="btn btn-ghost">
             Log Out
           </button>
         </li>

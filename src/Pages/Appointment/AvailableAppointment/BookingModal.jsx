@@ -1,8 +1,11 @@
 import { format } from "date-fns";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../../firebase.init";
 
 const BookingModal = ({ treatment, selected, setTreatment }) => {
   const { name, slots } = treatment;
+  const [user] = useAuthState(auth);
   const handleBooking = (e) => {
     e.preventDefault();
     const option = e.target.slot.value;
@@ -12,13 +15,14 @@ const BookingModal = ({ treatment, selected, setTreatment }) => {
     console.log(name, number, email, option);
     setTreatment(null);
   };
+  console.log(user);
   return (
     <div>
       <input type="checkbox" id="booking-modal" className="modal-toggle" />
       <div className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
           <label
-            for="booking-modal"
+            htmlFor="booking-modal"
             className="btn btn-sm btn-circle absolute right-2 top-2"
           >
             ✕
@@ -38,26 +42,30 @@ const BookingModal = ({ treatment, selected, setTreatment }) => {
               name="slot"
               className="select select-accent w-full max-w-xs"
             >
-              {slots.map((slot) => (
-                <option value={slot}>{slot}</option>
+              {slots.map((slot, index) => (
+                <option key={index} value={slot}>
+                  {slot}
+                </option>
               ))}
             </select>
             <input
               type="text"
+              disabled
               name="fullName"
-              placeholder="Full Name"
+              value={user?.displayName}
+              className="input input-bordered w-full max-w-xs"
+            />
+            <input
+              type="email"
+              disabled
+              value={user?.email || ""}
+              name="email"
               className="input input-bordered w-full max-w-xs"
             />
             <input
               type="tel"
               name="phoneNumber"
               placeholder="Phone Number"
-              className="input input-bordered w-full max-w-xs"
-            />
-            <input
-              type="email"
-              placeholder="Email"
-              name="email"
               className="input input-bordered w-full max-w-xs"
             />
             <input

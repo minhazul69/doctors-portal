@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import google from "../../assets/icons/google.svg";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
@@ -12,12 +12,14 @@ const GoogleLogin = () => {
   let navigate = useNavigate();
   let location = useLocation();
   let from = location.state?.from?.pathname || "/";
-  if (user) {
-    setTimeout(() => {
-      toast.success("User Login SuccessFull");
-    }, 1000);
-    navigate(from, { replace: true });
-  }
+  useEffect(() => {
+    if (user) {
+      setTimeout(() => {
+        toast.success("User Login SuccessFull");
+      }, 1000);
+      navigate(from, { replace: true });
+    }
+  }, [user, from, navigate]);
   if (googleLoading) {
     return <Spinner />;
   }
@@ -28,7 +30,10 @@ const GoogleLogin = () => {
   }
   return (
     <div>
-      <button onClick={() => signInWithGoogle()} class="btn btn-outline w-full">
+      <button
+        onClick={() => signInWithGoogle()}
+        className="btn btn-outline w-full"
+      >
         <img className="mr-2 w-7" src={google} alt="" />
         CONTINUE WITH GOOGLE
       </button>
