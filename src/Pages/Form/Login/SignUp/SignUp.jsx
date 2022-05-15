@@ -1,35 +1,77 @@
 import React from "react";
-import GoogleLogin from "../GoogleLogin";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import auth from "../../../firebase.init";
+import GoogleLogin from "../../GoogleLogin";
 import toast from "react-hot-toast";
+import {
+  useCreateUserWithEmailAndPassword,
+  useUpdateProfile,
+} from "react-firebase-hooks/auth";
+import auth from "../../../../firebase.init";
 
-const Login = () => {
-  const [signInWithEmailAndPassword, user, signinLoading, signInError] =
-    useSignInWithEmailAndPassword(auth);
+const SignUp = () => {
+  const [
+    createUserWithEmailAndPassword,
+    user,
+    userCreatLoading,
+    userCreateError,
+  ] = useCreateUserWithEmailAndPassword(auth);
+  const [updateProfile] = useUpdateProfile(auth);
   const {
     register,
+    resetField,
     handleSubmit,
+
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-    signInWithEmailAndPassword(data.email, data.password);
-    console.log(data);
+  const onSubmit = async (data) => {
+    if (data.password !== data.ConfirmPassword) {
+      return toast.error("Opps Password Not Match");
+    }
+    await createUserWithEmailAndPassword(data?.email, data?.password);
+    await updateProfile({ displayName: data.name });
+    resetField("name");
+    resetField("email");
+    resetField("password");
+    resetField("ConfirmPassword");
   };
-  if (signInError) {
-    const error = signInError?.message.split(":")[1];
-    toast.error(error);
-  } else if (user) {
-    toast.success("User Login SuccessFull");
+  if (user) {
+    toast.success("Create Account SuccessFully");
   }
+  if (userCreateError) {
+    const error = userCreateError?.message.split(":")[1];
+    toast.error(error);
+  }
+  console.log(user);
   return (
     <div className="flex items-center justify-center w-screen my-10">
       <div class="card w-96 bg-base-100 shadow-xl">
         <div class="card-body">
           <h2 class="text-center font-bold text-xl">Login</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
+            <div class="form-control w-full max-w-xs ">
+              <label class="label">
+                <span class="label-name">Name</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Name"
+                class="input input-bordered w-full max-w-xs"
+                {...register("name", {
+                  required: {
+                    value: true,
+                    message: "Name Is Required",
+                  },
+                })}
+              />
+              <label className="label">
+                {errors.name?.type === "required" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.name.message}
+                  </span>
+                )}
+              </label>
+            </div>
             <div class="form-control w-full max-w-xs ">
               <label class="label">
                 <span class="label-email">Email</span>
@@ -94,12 +136,35 @@ const Login = () => {
                 )}
               </label>
             </div>
-            <input className="btn w-full" type="submit" value="Login" />
+            <div class="form-control w-full max-w-xs ">
+              <label class="label">
+                <span class="label-password">Confirm Password</span>
+              </label>
+              <input
+                type="password"
+                placeholder="Confirm Password"
+                class="input input-bordered w-full max-w-xs"
+                {...register("ConfirmPassword", {
+                  required: {
+                    value: true,
+                    message: "Please Type A Confirm Password",
+                  },
+                })}
+              />
+              <label className="label">
+                {errors.ConfirmPassword?.type === "required" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.ConfirmPassword.message}
+                  </span>
+                )}
+              </label>
+            </div>
+            <input className="btn w-full" type="submit" value="Register" />
           </form>
           <p className="text-center my-2">
-            New to Doctors | Portal ?{" "}
-            <Link className="font-bold text-secondary" to="/signUp">
-              Register
+            Already have an account ?{" "}
+            <Link className="font-bold text-secondary" to="/login">
+              Login
             </Link>
           </p>
           <div class="divider">OR</div>
@@ -110,4 +175,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;

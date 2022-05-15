@@ -9,6 +9,8 @@ import Home from "./Pages/Home/Home";
 import Reviews from "./Pages/Reviews/Reviews";
 import Footer from "./Pages/Shared/Footer/Footer";
 import Header from "./Pages/Shared/Header/Header";
+import { Toaster } from "react-hot-toast";
+import SignUp from "./Pages/Form/Login/SignUp/SignUp";
 
 function App() {
   return (
@@ -21,9 +23,11 @@ function App() {
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/contactUs" element={<ContactUs />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signUp" element={<SignUp />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 }
