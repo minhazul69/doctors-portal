@@ -14,7 +14,8 @@ const BookingModal = ({ treatment, selected, setTreatment }) => {
     if (!number) {
       return toast.error("Please Type A Number");
     }
-    const formatedDate = format(selected, "pp");
+    const formatedDate = format(selected, "PP");
+    console.log(formatedDate);
     const booking = {
       treatmentId: _id,
       treatment: name,
