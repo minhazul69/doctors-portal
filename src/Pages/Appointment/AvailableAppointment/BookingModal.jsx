@@ -14,7 +14,7 @@ const BookingModal = ({ treatment, selected, setTreatment, refetch }) => {
     if (!number) {
       return toast.error("Please Type A Number");
     }
-    const formatedDate = format(selected, "PP");
+    const formatedDate = selected && format(selected, "PP");
     console.log(formatedDate);
     const booking = {
       treatmentId: _id,
@@ -64,7 +64,7 @@ const BookingModal = ({ treatment, selected, setTreatment, refetch }) => {
           >
             <input
               disabled
-              value={format(selected, "PP")}
+              value={selected && format(selected, "PP")}
               placeholder="Type here"
               className="input input-bordered w-full max-w-xs"
             />

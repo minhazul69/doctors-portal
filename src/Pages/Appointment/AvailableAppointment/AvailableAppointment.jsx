@@ -8,7 +8,7 @@ import Spinner from "../../Shared/Spinner/Spinner";
 const AvailableAppointment = ({ selected }) => {
   // const [services, setServices] = useState([]);
   const [treatment, setTreatment] = useState(null);
-  const formatedDate = format(selected, "PP");
+  const formatedDate = selected && format(selected, "PP");
   const {
     data: services,
     isLoading,
@@ -29,7 +29,7 @@ const AvailableAppointment = ({ selected }) => {
   return (
     <div className="lg:px-12 mb-10">
       <h3 className="text-center text-secondary text-xl my-16">
-        Available Appointment on {format(selected, "PP")}
+        Available Appointment on {selected && format(selected, "PP")}
       </h3>
 
       <div className="grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-2 gap-5">

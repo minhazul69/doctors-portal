@@ -27,19 +27,23 @@ const Login = () => {
       navigate(from, { replace: true });
     }
   }, [user, from, navigate]);
+
+  useEffect(() => {
+    if (signInError) {
+      const error = signInError?.message.split(":")[1];
+      toast.error(error);
+    }
+  }, [signInError]);
   if (signinLoading) {
     return <Spinner />;
   }
 
-  if (signInError) {
-    const error = signInError?.message.split(":")[1];
-    toast.error(error);
-  }
-
   const onSubmit = (data) => {
     signInWithEmailAndPassword(data.email, data.password);
-    resetField("email");
-    resetField("password");
+    if (user) {
+      resetField("email");
+      resetField("password");
+    }
   };
 
   return (
