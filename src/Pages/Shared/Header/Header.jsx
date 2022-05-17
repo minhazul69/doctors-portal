@@ -21,6 +21,11 @@ const Header = () => {
       <li>
         <CustomLink to="/reviews">Reviews</CustomLink>
       </li>
+      {user && (
+        <li>
+          <CustomLink to="/dashboard">Dashboard</CustomLink>
+        </li>
+      )}
       <li>
         <CustomLink to="/contactUs">Contact Us</CustomLink>
       </li>

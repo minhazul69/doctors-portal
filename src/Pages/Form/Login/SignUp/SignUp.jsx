@@ -27,6 +27,13 @@ const SignUp = () => {
 
     formState: { errors },
   } = useForm();
+
+  useEffect(() => {
+    if (userCreateError) {
+      const error = userCreateError?.message.split(":")[1];
+      toast.error(error);
+    }
+  }, [userCreateError]);
   useEffect(() => {
     if (user) {
       setTimeout(() => {
@@ -44,17 +51,14 @@ const SignUp = () => {
     }
     await createUserWithEmailAndPassword(data?.email, data?.password);
     await updateProfile({ displayName: data.name });
-    resetField("name");
-    resetField("email");
-    resetField("password");
-    resetField("ConfirmPassword");
+    if (user) {
+      resetField("name");
+      resetField("email");
+      resetField("password");
+      resetField("ConfirmPassword");
+    }
   };
 
-  if (userCreateError) {
-    const error = userCreateError?.message.split(":")[1];
-    toast.error(error);
-  }
-  console.log(user);
   return (
     <div className="flex items-center justify-center w-screen my-10">
       <div className="card w-96 bg-base-100 shadow-xl">

@@ -12,7 +12,7 @@ function CustomLink({ children, to, ...props }) {
         color: match && "white",
       }}
     >
-      <Link to={to} {...props}>
+      <Link className="inline-block" to={to} {...props}>
         {children}
       </Link>
     </div>

@@ -13,6 +13,12 @@ const GoogleLogin = () => {
   let location = useLocation();
   let from = location.state?.from?.pathname || "/";
   useEffect(() => {
+    if (googleError) {
+      const errorMessage = googleError?.message.split(":")[1];
+      toast.error(errorMessage);
+    }
+  }, [googleError]);
+  useEffect(() => {
     if (user) {
       setTimeout(() => {
         toast.success("User Login SuccessFull");
@@ -24,10 +30,6 @@ const GoogleLogin = () => {
     return <Spinner />;
   }
 
-  if (googleError) {
-    const errorMessage = googleError?.message.split(":")[1];
-    toast.error(errorMessage);
-  }
   return (
     <div>
       <button

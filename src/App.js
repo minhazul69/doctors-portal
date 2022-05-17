@@ -12,6 +12,9 @@ import Header from "./Pages/Shared/Header/Header";
 import { Toaster } from "react-hot-toast";
 import SignUp from "./Pages/Form/Login/SignUp/SignUp";
 import RequireAuth from "./Pages/RequireAuth/RequireAuth";
+import Dashboard from "./Pages/Dashboard/Dashboard";
+import MyAppointment from "./Pages/Dashboard/MyAppointment/MyAppointment";
+import MyReview from "./Pages/Dashboard/MyRevie/MyReview";
 
 function App() {
   return (
@@ -28,6 +31,17 @@ function App() {
             </RequireAuth>
           }
         />
+        <Route
+          path="/dashboard"
+          element={
+            <RequireAuth>
+              <Dashboard />
+            </RequireAuth>
+          }
+        >
+          <Route index element={<MyAppointment />} />
+          <Route path="review" element={<MyReview />} />
+        </Route>
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/contactUs" element={<ContactUs />} />
         <Route path="/login" element={<Login />} />
