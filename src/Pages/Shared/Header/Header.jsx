@@ -78,7 +78,7 @@ const Header = () => {
       </div>
       <div className="navbar-end">
         <label
-          for="dashboard-dropdown"
+          htmlFor="dashboard-dropdown"
           tabIndex="1"
           className="btn btn-ghost lg:hidden"
         >

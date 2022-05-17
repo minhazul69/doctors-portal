@@ -19,8 +19,8 @@ const MyAppointment = () => {
           You Have No Appointment At This Time
         </h1>
       ) : (
-        <div class="overflow-x-auto">
-          <table class="table w-full">
+        <div className="overflow-x-auto">
+          <table className="table w-full">
             <thead>
               <tr>
                 <th></th>
@@ -30,10 +30,10 @@ const MyAppointment = () => {
                 <th>Treatment</th>
               </tr>
             </thead>
-            {appointments.map((appointment) => (
-              <tbody>
+            {appointments.map((appointment, index) => (
+              <tbody key={index}>
                 <tr>
-                  <th>1</th>
+                  <th>{index + 1}</th>
                   <td>{appointment?.patientName}</td>
                   <td>{appointment.date}</td>
                   <td>{appointment.option}</td>
