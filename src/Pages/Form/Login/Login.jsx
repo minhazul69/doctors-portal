@@ -6,12 +6,14 @@ import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import toast from "react-hot-toast";
 import Spinner from "../../Shared/Spinner/Spinner";
+import useToken from "../../../Hooks/useToken";
 
 const Login = () => {
   const [signInWithEmailAndPassword, user, signinLoading, signInError] =
     useSignInWithEmailAndPassword(auth);
   let navigate = useNavigate();
   let location = useLocation();
+  const [token] = useToken(user);
   let from = location.state?.from?.pathname || "/";
   const {
     register,
@@ -20,13 +22,11 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   useEffect(() => {
-    if (user) {
-      setTimeout(() => {
-        toast.success("User Login SuccessFull");
-      }, 1000);
+    if (token) {
       navigate(from, { replace: true });
+      toast.success("User Login SuccessFull");
     }
-  }, [user, from, navigate]);
+  }, [token, from, navigate]);
 
   useEffect(() => {
     if (signInError) {
