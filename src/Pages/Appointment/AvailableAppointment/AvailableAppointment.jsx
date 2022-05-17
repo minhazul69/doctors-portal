@@ -21,11 +21,7 @@ const AvailableAppointment = ({ selected }) => {
   if (isLoading) {
     return <Spinner />;
   }
-  // useEffect(() => {
-  //   fetch(`http://localhost:5000/available?date=${formatedDate}`)
-  //     .then((res) => res.json())
-  //     .then((data) => setServices(data));
-  // }, [formatedDate]);
+
   return (
     <div className="lg:px-12 mb-10">
       <h3 className="text-center text-secondary text-xl my-16">

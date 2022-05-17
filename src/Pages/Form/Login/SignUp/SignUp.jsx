@@ -8,8 +8,8 @@ import {
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import auth from "../../../../firebase.init";
-
 import Spinner from "../../../Shared/Spinner/Spinner";
+import useToken from "../../../../Hooks/useToken";
 
 const SignUp = () => {
   const [
@@ -27,6 +27,10 @@ const SignUp = () => {
 
     formState: { errors },
   } = useForm();
+  const [token] = useToken(user);
+  if (token) {
+    navigate("/");
+  }
 
   useEffect(() => {
     if (userCreateError) {
@@ -39,7 +43,6 @@ const SignUp = () => {
       setTimeout(() => {
         toast.success("Create Account SuccessFully");
       }, 1000);
-      navigate("/");
     }
   }, [user, navigate]);
   if (userCreatLoading) {

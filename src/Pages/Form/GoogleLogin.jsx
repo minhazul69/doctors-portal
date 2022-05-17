@@ -5,12 +5,14 @@ import auth from "../../firebase.init";
 import Spinner from "../Shared/Spinner/Spinner";
 import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
+import useToken from "../../Hooks/useToken";
 
 const GoogleLogin = () => {
   const [signInWithGoogle, user, googleLoading, googleError] =
     useSignInWithGoogle(auth);
   let navigate = useNavigate();
   let location = useLocation();
+  const [token] = useToken(user);
   let from = location.state?.from?.pathname || "/";
   useEffect(() => {
     if (googleError) {
@@ -18,12 +20,14 @@ const GoogleLogin = () => {
       toast.error(errorMessage);
     }
   }, [googleError]);
+  if (token) {
+    navigate(from, { replace: true });
+  }
   useEffect(() => {
     if (user) {
       setTimeout(() => {
         toast.success("User Login SuccessFull");
       }, 1000);
-      navigate(from, { replace: true });
     }
   }, [user, from, navigate]);
   if (googleLoading) {
