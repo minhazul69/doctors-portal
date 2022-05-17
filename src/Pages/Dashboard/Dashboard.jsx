@@ -1,6 +1,5 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
-import CustomLink from "../Shared/CustomLink/CustomLink";
+import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
   return (
@@ -26,10 +25,10 @@ const Dashboard = () => {
           <ul className="menu p-4 overflow-y-auto w-50 bg-base-100 text-base-content">
             {/* <!-- Sidebar content here --> */}
             <li>
-              <CustomLink to="/dashboard">My Appointment</CustomLink>
+              <NavLink to="/dashboard">My Appointment</NavLink>
             </li>
             <li>
-              <CustomLink to="/dashboard/review">My Review</CustomLink>
+              <NavLink to="/dashboard/review">My Review</NavLink>
             </li>
           </ul>
         </div>

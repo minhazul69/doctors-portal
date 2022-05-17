@@ -1,33 +1,34 @@
 import { signOut } from "firebase/auth";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import auth from "../../../firebase.init";
-import CustomLink from "../CustomLink/CustomLink";
+import "./Header.css";
 
 const Header = () => {
   const [user] = useAuthState(auth);
+
   const menuItems = (
     <>
       <li>
-        <CustomLink to="/">Home</CustomLink>
+        <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <CustomLink to="/about">About</CustomLink>
+        <NavLink to="/about">About</NavLink>
       </li>
       <li>
-        <CustomLink to="/appointment">Appointment</CustomLink>
+        <NavLink to="/appointment">Appointment</NavLink>
       </li>
       <li>
-        <CustomLink to="/reviews">Reviews</CustomLink>
+        <NavLink to="/reviews">Reviews</NavLink>
       </li>
       {user && (
         <li>
-          <CustomLink to="/dashboard">Dashboard</CustomLink>
+          <NavLink to="/dashboard">Dashboard</NavLink>
         </li>
       )}
       <li>
-        <CustomLink to="/contactUs">Contact Us</CustomLink>
+        <NavLink to="/contactUs">Contact Us</NavLink>
       </li>
       {user ? (
         <li>
@@ -37,7 +38,7 @@ const Header = () => {
         </li>
       ) : (
         <li>
-          <CustomLink to="/login">Login</CustomLink>
+          <NavLink to="/login">Login</NavLink>
         </li>
       )}
     </>
