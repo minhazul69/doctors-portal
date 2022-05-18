@@ -8,6 +8,11 @@ import "./Header.css";
 const Header = () => {
   const [user] = useAuthState(auth);
 
+  const handleSignOut = () => {
+    signOut(auth);
+    localStorage.removeItem("accessToken");
+  };
+
   const menuItems = (
     <>
       <li>
@@ -32,7 +37,7 @@ const Header = () => {
       </li>
       {user ? (
         <li>
-          <button onClick={() => signOut(auth)} className="btn btn-ghost">
+          <button onClick={handleSignOut} className="btn btn-ghost">
             Log Out
           </button>
         </li>

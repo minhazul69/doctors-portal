@@ -15,6 +15,7 @@ import RequireAuth from "./Pages/RequireAuth/RequireAuth";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import MyAppointment from "./Pages/Dashboard/MyAppointment/MyAppointment";
 import MyReview from "./Pages/Dashboard/MyRevie/MyReview";
+import AllUser from "./Pages/Dashboard/AllUser/AllUser";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
         >
           <Route index element={<MyAppointment />} />
           <Route path="review" element={<MyReview />} />
+          <Route path="user" element={<AllUser />} />
         </Route>
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/contactUs" element={<ContactUs />} />
