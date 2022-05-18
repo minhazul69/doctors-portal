@@ -1,9 +1,14 @@
 import React from "react";
 import { useQuery } from "react-query";
 import Spinner from "../../Shared/Spinner/Spinner";
+import { UserInfo } from "./UserInfo";
 
 const AllUser = () => {
-  const { data: users, isLoading } = useQuery("user", () =>
+  const {
+    data: users,
+    isLoading,
+    refetch,
+  } = useQuery("user", () =>
     fetch("http://localhost:5000/users", {
       method: "GET",
       headers: {
@@ -14,6 +19,7 @@ const AllUser = () => {
   if (isLoading) {
     return <Spinner />;
   }
+
   return (
     <div>
       <h2>All USer{users.length}</h2>
@@ -22,17 +28,20 @@ const AllUser = () => {
           <thead>
             <tr>
               <th></th>
-              <th>Id</th>
+
               <th>Email</th>
+              <th>Admin</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
             {users.map((user, index) => (
-              <tr key={user._id}>
-                <th>{index + 1}</th>
-                <td>{user?._id}</td>
-                <td>{user?.email}</td>
-              </tr>
+              <UserInfo
+                key={user._id}
+                user={user}
+                index={index}
+                refetch={refetch}
+              />
             ))}
           </tbody>
         </table>

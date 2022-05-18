@@ -7,6 +7,7 @@ import auth from "../../../firebase.init";
 import toast from "react-hot-toast";
 import Spinner from "../../Shared/Spinner/Spinner";
 import useToken from "../../../Hooks/useToken";
+import Swal from "sweetalert2/dist/sweetalert2.js";
 
 const Login = () => {
   const [signInWithEmailAndPassword, user, signinLoading, signInError] =
