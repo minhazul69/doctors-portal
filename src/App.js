@@ -17,6 +17,7 @@ import MyAppointment from "./Pages/Dashboard/MyAppointment/MyAppointment";
 import MyReview from "./Pages/Dashboard/MyRevie/MyReview";
 import AllUser from "./Pages/Dashboard/AllUser/AllUser";
 import RequireAdmin from "./Pages/RequireAdmin/RequireAdmin";
+import ResetPassword from "./Pages/Form/ResatPassword/ResetPassword";
 
 function App() {
   return (
@@ -56,6 +57,7 @@ function App() {
         <Route path="/contactUs" element={<ContactUs />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
+        <Route path="/resetPassword" element={<ResetPassword />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
