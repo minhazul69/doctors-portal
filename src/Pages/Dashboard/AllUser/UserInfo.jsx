@@ -31,16 +31,24 @@ export const UserInfo = ({ user, index, refetch }) => {
               authorization: `Bearer ${localStorage.getItem("accessToken")}`,
             },
           })
-            .then((res) => res.json())
+            .then((res) => {
+              console.log(res);
+              if (res.status === 403) {
+                return toast.error("Failed To Make And Admin");
+              }
+              return res.json();
+            })
             .then((data) => {
-              refetch();
-              console.log(data);
+              if (data.modifiedCount > 0) {
+                swalWithBootstrapButtons.fire(
+                  "SuccessFull",
+                  "This User Make Admin SuccessFull",
+                  "success"
+                );
+                refetch();
+                console.log(data);
+              }
             });
-          swalWithBootstrapButtons.fire(
-            "SuccessFull",
-            "This User Make Admin SuccessFull",
-            "success"
-          );
         } else if (
           /* Read more about handling dismissals below */
           result.dismiss === Swal.DismissReason.cancel
