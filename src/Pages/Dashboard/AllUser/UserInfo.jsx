@@ -61,6 +61,31 @@ export const UserInfo = ({ user, index, refetch }) => {
         }
       });
   };
+  const handleDeleteService = (id) => {
+    console.log(id);
+    Swal.fire({
+      title: "Are you sure ?",
+      text: "You can't delete this user",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const url = `http://localhost:5000/deleteAdmin/${id}`;
+        fetch(url, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            refetch();
+          });
+        Swal.fire("Deleted!", "The user has been deleted.", "success");
+      }
+    });
+  };
   return (
     <tr key={user._id}>
       <th>{index + 1}</th>
@@ -75,7 +100,10 @@ export const UserInfo = ({ user, index, refetch }) => {
         )}
       </td>
       <td>
-        <button class="btn btn-circle btn-outline">
+        <button
+          onClick={() => handleDeleteService(user._id)}
+          class="btn btn-circle btn-outline"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-6 w-6"

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import tretment from "../../../../assets/images/treatment.png";
 
 const ServiceBanner = () => {
@@ -23,9 +24,12 @@ const ServiceBanner = () => {
             here', making it look like readable English. Many desktop publishing
             packages and web page
           </p>
-          <button className="btn btn-primary text-white font-bold bg-gradient-to-r from-secondary to-primary">
+          <Link
+            to="/appointment"
+            className="btn btn-primary text-white font-bold bg-gradient-to-r from-secondary to-primary"
+          >
             Get Started
-          </button>
+          </Link>
         </div>
       </div>
     </div>

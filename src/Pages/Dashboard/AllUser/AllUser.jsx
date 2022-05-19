@@ -23,6 +23,7 @@ const AllUser = () => {
   return (
     <div>
       <h2>All USer{users.length}</h2>
+
       <div class="overflow-x-auto">
         <table class="table w-full">
           <thead>
