@@ -18,6 +18,7 @@ import MyReview from "./Pages/Dashboard/MyRevie/MyReview";
 import AllUser from "./Pages/Dashboard/AllUser/AllUser";
 import RequireAdmin from "./Pages/RequireAdmin/RequireAdmin";
 import ResetPassword from "./Pages/Form/ResatPassword/ResetPassword";
+import AddDoctor from "./Pages/Dashboard/AddDoctor/AddDoctor";
 
 function App() {
   return (
@@ -49,6 +50,14 @@ function App() {
             element={
               <RequireAdmin>
                 <AllUser />
+              </RequireAdmin>
+            }
+          />
+          <Route
+            path="addDoctor"
+            element={
+              <RequireAdmin>
+                <AddDoctor />
               </RequireAdmin>
             }
           />

@@ -25,12 +25,15 @@ export const UserInfo = ({ user, index, refetch }) => {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          fetch(`http://localhost:5000/user/admin/${email}`, {
-            method: "PUT",
-            headers: {
-              authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-            },
-          })
+          fetch(
+            `https://doctor-portal-01826.herokuapp.com/user/admin/${email}`,
+            {
+              method: "PUT",
+              headers: {
+                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+              },
+            }
+          )
             .then((res) => {
               console.log(res);
               if (res.status === 403) {
@@ -73,7 +76,7 @@ export const UserInfo = ({ user, index, refetch }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        const url = `http://localhost:5000/deleteAdmin/${id}`;
+        const url = `https://doctor-portal-01826.herokuapp.com/deleteAdmin/${id}`;
         fetch(url, {
           method: "DELETE",
         })

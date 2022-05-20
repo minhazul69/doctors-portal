@@ -24,7 +24,6 @@ const SignUp = () => {
     register,
     resetField,
     handleSubmit,
-
     formState: { errors },
   } = useForm();
   const [token] = useToken(user);

@@ -14,9 +14,9 @@ const AvailableAppointment = ({ selected }) => {
     isLoading,
     refetch,
   } = useQuery(["available", formatedDate], () =>
-    fetch(`http://localhost:5000/available?date=${formatedDate}`).then((res) =>
-      res.json()
-    )
+    fetch(
+      `https://doctor-portal-01826.herokuapp.com/available?date=${formatedDate}`
+    ).then((res) => res.json())
   );
   if (isLoading) {
     return <Spinner />;
