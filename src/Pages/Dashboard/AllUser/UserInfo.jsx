@@ -105,7 +105,7 @@ export const UserInfo = ({ user, index, refetch }) => {
       <td>
         <button
           onClick={() => handleDeleteService(user._id)}
-          class="btn btn-circle btn-outline"
+          class="btn btn-circle btn-outline btn-error"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
