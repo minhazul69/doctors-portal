@@ -19,6 +19,7 @@ import AllUser from "./Pages/Dashboard/AllUser/AllUser";
 import RequireAdmin from "./Pages/RequireAdmin/RequireAdmin";
 import ResetPassword from "./Pages/Form/ResatPassword/ResetPassword";
 import AddDoctor from "./Pages/Dashboard/AddDoctor/AddDoctor";
+import ManageDoctor from "./Pages/Dashboard/ManageDoctor/ManageDoctor";
 
 function App() {
   return (
@@ -58,6 +59,14 @@ function App() {
             element={
               <RequireAdmin>
                 <AddDoctor />
+              </RequireAdmin>
+            }
+          />
+          <Route
+            path="manageDoctor"
+            element={
+              <RequireAdmin>
+                <ManageDoctor />
               </RequireAdmin>
             }
           />
