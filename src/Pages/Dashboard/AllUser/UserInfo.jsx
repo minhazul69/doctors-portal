@@ -65,7 +65,6 @@ export const UserInfo = ({ user, index, refetch }) => {
       });
   };
   const handleDeleteService = (id) => {
-    console.log(id);
     Swal.fire({
       title: "Are you sure ?",
       text: "You can't delete this user",

@@ -3,7 +3,6 @@ import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import toast from "react-hot-toast";
-
 const BookingModal = ({ treatment, selected, setTreatment, refetch }) => {
   const { name, slots, _id, price } = treatment;
   const [user] = useAuthState(auth);
