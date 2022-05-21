@@ -1,6 +1,7 @@
 [
   {
     "_id": 1,
+    "price": 68,
     "name": "Teeth Orthodontics",
     "slots": [
       "09.00 AM - 09.30AM",
@@ -17,6 +18,7 @@
   },
   {
     "_id": 2,
+    "price": 88,
     "name": "Cosmetic Dentistry",
     "slots": [
       "09.00 AM - 09.30AM",
@@ -33,11 +35,13 @@
   },
   {
     "_id": 3,
+    "price": 98,
     "name": "Teeth Cleaning",
     "slots": ["08.00 AM - 08.30AM"]
   },
   {
     "_id": 4,
+    "price": 47,
     "name": "Cavity Protection",
     "slots": [
       "09.00 AM - 09.30AM",
@@ -54,6 +58,7 @@
   },
   {
     "_id": 5,
+    "price": 67,
     "name": "Pediatric Dental",
     "slots": [
       "09.00 AM - 09.30AM",
@@ -70,6 +75,7 @@
   },
   {
     "_id": 6,
+    "price": 78,
     "name": "Oral Surgery",
     "slots": [
       "09.00 AM - 09.30AM",

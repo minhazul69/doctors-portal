@@ -5,7 +5,7 @@ import auth from "../../../firebase.init";
 import toast from "react-hot-toast";
 
 const BookingModal = ({ treatment, selected, setTreatment, refetch }) => {
-  const { name, slots, _id } = treatment;
+  const { name, slots, _id, price } = treatment;
   const [user] = useAuthState(auth);
   const handleBooking = (e) => {
     e.preventDefault();
@@ -14,6 +14,12 @@ const BookingModal = ({ treatment, selected, setTreatment, refetch }) => {
     if (!number) {
       return toast.error("Please Type A Number");
     }
+    if (isNaN(number)) {
+      return toast.error("Number Is Not Valid Please Type A Valid Number");
+    }
+    if (number.length < 11) {
+      return toast.error("Your Number Must Be 11 Digits");
+    }
     const formatedDate = selected && format(selected, "PP");
     console.log(formatedDate);
     const booking = {
@@ -21,6 +27,7 @@ const BookingModal = ({ treatment, selected, setTreatment, refetch }) => {
       treatment: name,
       date: formatedDate,
       option,
+      price,
       patient: user?.email,
       patientName: user?.displayName,
       phone: number,
@@ -83,6 +90,12 @@ const BookingModal = ({ treatment, selected, setTreatment, refetch }) => {
               disabled
               name="fullName"
               value={user?.displayName}
+              className="input input-bordered w-full max-w-xs"
+            />
+            <input
+              type="text"
+              disabled
+              value={`price: $${price}`}
               className="input input-bordered w-full max-w-xs"
             />
             <input
