@@ -14,7 +14,7 @@ const AddDoctor = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const imageStorageKey = "5de414c45289bac60608bac851de7a6e";
+  const imageStorageKey = "fda6ab6214274b735172bdbc386ccc58";
   const onSubmit = (data) => {
     // if (data.image[0].size !== 200) {
     //   console.log(data.image[0].size);
@@ -22,6 +22,7 @@ const AddDoctor = () => {
     //   return toast.error("Image Must be 200kb");
     // }
     const image = data.image[0];
+    console.log(image);
     const formData = new FormData();
     formData.append("image", image);
     const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`;

@@ -2,7 +2,7 @@ import { signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import auth from "../../../firebase.init";
 import Spinner from "../../Shared/Spinner/Spinner";
@@ -106,6 +106,7 @@ const MyAppointment = () => {
                 <th>Time</th>
                 <th>Price</th>
                 <th>Treatment</th>
+                <th>Pay</th>
                 <th>Delete</th>
               </tr>
             </thead>
@@ -118,6 +119,16 @@ const MyAppointment = () => {
                   <td>{appointment.option}</td>
                   <td>{appointment.price}</td>
                   <td>{appointment.treatment}</td>
+                  <td>
+                    {appointment.price && !appointment.paid && (
+                      <Link to={`/dashboard/payment/${appointment._id}`}>
+                        <button className="btn btn-success">Pay</button>
+                      </Link>
+                    )}
+                    {appointment.price && appointment.paid && (
+                      <span className="text-success">Paid</span>
+                    )}
+                  </td>
                   <td>
                     <button
                       onClick={() =>
