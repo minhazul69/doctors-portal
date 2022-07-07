@@ -65,7 +65,7 @@ const CheckoutFrom = ({ appointment }) => {
         appointment: _id,
         transactionId: paymentIntent.id,
       };
-      console.log(payment);
+      console.log(payment)
       fetch(`http://localhost:5000/booking/${_id}`, {
         method: "PATCH",
         headers: {
