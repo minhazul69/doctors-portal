@@ -8,6 +8,7 @@ const AllUser = () => {
     data: users,
     isLoading,
     refetch,
+    // GET ALLL USERS
   } = useQuery("user", () =>
     fetch("https://doctor-portal-01826.herokuapp.com/users", {
       method: "GET",
